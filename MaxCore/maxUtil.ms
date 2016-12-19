@@ -337,6 +337,23 @@
 			)
 
 			common;
+		),
+
+--------------------
+-- COLOR | HELPER --
+--------------------
+
+		public function HSVtoRGB hsv =
+		(
+			/*	Convert HSV to RGB color, from Denis 'denisT' Trofimov.
+			*/
+
+			local color = black;
+			color.h = hsv.x;
+			color.s = hsv.y;
+			color.v = hsv.z;
+
+			color;
 		)
 	)
 

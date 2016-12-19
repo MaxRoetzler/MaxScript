@@ -30,7 +30,7 @@
 
 			for node in selection do
 			(
-				case (IsInstance node) of
+				case (Core.Node.IsInstance node) of
 				(
 					true  : Append duplicates (Instance node);
 					false : Append duplicates (Copy node);
@@ -48,12 +48,13 @@
 
 			for node in selection do
 			(
-				if (node.Parent == undefined or FindItem selection node.Parent == 0) do
+				if (node.Parent == undefined or FindItem (selection as Array) node.Parent == 0) do
 				(
-					case (GetRefCoordSys ()) of
+					matrix = node.Transform;
+
+					if (GetRefCoordSys () == #Local) do
 					(
-						#View	: coords = Matrix3 1;
-						#Local	: coords = node.Transform;
+						coords = node.Transform;
 					)
 
 					case (GetCoordCenter ()) of

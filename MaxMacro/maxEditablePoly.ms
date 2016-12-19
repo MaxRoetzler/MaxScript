@@ -210,20 +210,8 @@
 		(
 			if (subObjectLevel == 2 or subObjectLevel == 3) then
 			(
-				local edges = polyOp.GetEdgeSelection node;
-
-				if (edges.Numberset < 3) then
-				(
-					for edge in edges do
-					(
-						polyOp.DivideEdge node edge 0.5;
-					)
-				)
-				else
-				(
-					node.connectEdgeSegments = 1;
-					node.ConnectEdges ();
-				)
+				node.connectEdgeSegments = 1;
+				node.ConnectEdges ();
 			)
 			else if (subObjectLevel == 4) do
 			(
