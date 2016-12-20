@@ -3,7 +3,6 @@
 (
 	struct maxPoly
 	(
-		public Tools,
 
 ---------------------------
 -- SUB-OBJECT CONVERSION --
@@ -131,6 +130,24 @@
 ----------------------------
 -- SUB-OBJECT CALCULATION --
 ----------------------------
+
+		public function GetInFacesUsingVert node verts: =
+		(
+			if (verts == unsupplied) do
+			(
+				verts = GetSelectionAsVertex node;
+			)
+
+			if (verts.NumberSet > 0) then
+			(
+				local faces = polyOp.GetFacesUsingVert node verts;
+				local invVerts = #{1..(polyOp.GetNumVerts node)} - verts;
+				local invFaces = polyOp.GetFacesUsingVert node invVerts;
+
+				faces - invFaces;
+			)
+			else #{};
+		),
 
 		public function CalculateWeightedCenter node verts: =
 		(
