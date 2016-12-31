@@ -128,8 +128,8 @@
 					for knot in knots do
 					(
 						grow[knot] = true;
-						grow[Core.Math.Next knot total] = true;
-						grow[Core.Math.Prev knot total] = true;
+						grow[Core.Math.Raise knot total] = true;
+						grow[Core.Math.Lower knot total] = true;
 					)
 				) -- End handle closed spline.
 				else
@@ -176,8 +176,8 @@
 					for segment in segments do
 					(
 						grow[segment] = true;
-						grow[Core.Math.Next segment total] = true;
-						grow[Core.Math.Prev segment total] = true;
+						grow[Core.Math.Raise segment total] = true;
+						grow[Core.Math.Lower segment total] = true;
 					)
 				) -- End handle closed spline.
 				else
@@ -223,7 +223,7 @@
 				(
 					for knot in knots do
 					(
-						if (flags[Core.Math.Next knot total] and flags[Core.Math.Prev knot total]) do
+						if (flags[Core.Math.Raise knot total] and flags[Core.Math.Lower knot total]) do
 						(
 							Append shrink knot;
 						)
@@ -241,7 +241,7 @@
 						(
 							Append shrink knot;
 						)
-						else if (flags[Core.Math.Next knot total] and flags[Core.Math.Prev knot total]) do
+						else if (flags[Core.Math.Raise knot total] and flags[Core.Math.Lower knot total]) do
 						(
 							Append shrink knot;
 						)
@@ -280,7 +280,7 @@
 				(
 					for segment in segments do
 					(
-						if (flags[Core.Math.Next segment total] and flags[Core.Math.Prev segment total]) do
+						if (flags[Core.Math.Raise segment total] and flags[Core.Math.Lower segment total]) do
 						(
 							Append shrink segment;
 						)
@@ -298,7 +298,7 @@
 						(
 							Append shrink segment;
 						)
-						else if (flags[Core.Math.Next segment total] and flags[Core.Math.Prev segment total]) do
+						else if (flags[Core.Math.Raise segment total] and flags[Core.Math.Lower segment total]) do
 						(
 							Append shrink segment;
 						)
@@ -339,7 +339,7 @@
 					for knot in knots do
 					(
 						segments[knot] = true;
-						segments[Core.Math.Prev knot total] = true;
+						segments[Core.Math.Lower knot total] = true;
 					)
 				) -- End handle closed spline.
 				else
@@ -391,7 +391,7 @@
 					for segment in segments do
 					(
 						knots[segment] = true;
-						knots[Core.Math.Next segment total] = true;
+						knots[Core.Math.Raise segment total] = true;
 					)
 				) -- End handle closed spline.
 				else

@@ -8,7 +8,7 @@
 				if (id > 0) do
 				(
 					$.Edit_Poly.SetOperation #SetMaterial;
-					$.Edit_Poly.MaterialIDToSet = id;
+					$.Edit_Poly.MaterialIDToSet = (id - 1);
 				)
 			)
 

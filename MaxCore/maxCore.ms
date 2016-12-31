@@ -195,8 +195,6 @@
 
 		public function Enable =
 		(
-			m_directory = SysInfo.CurrentDir;
-
 			Callbacks.AddScript #FilePostOpen "Core.RaiseEvent #OnReset" id:#MaxCore;
 			Callbacks.AddScript #SystemPostNew "Core.RaiseEvent #OnReset" id:#MaxCore;
 
@@ -211,6 +209,11 @@
 			m_observers = undefined;
 
 			Callbacks.RemoveScripts id:#MaxCore;
+		),
+
+		on Create do
+		(
+			m_directory = SysInfo.CurrentDir;
 		)
 	)
 
