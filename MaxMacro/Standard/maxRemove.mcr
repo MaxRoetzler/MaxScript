@@ -1,4 +1,4 @@
-macroScript MaxRemove category:"Max Macro" buttonText:"Remove" toolTip:"Remove"
+macroScript MaxRemove category:"Max Core" buttonText:"Remove" toolTip:"Remove"
 (
 	case (Core.Node.GetObjectType ()) of
 	(

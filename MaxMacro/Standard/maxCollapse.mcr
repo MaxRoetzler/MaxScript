@@ -15,33 +15,37 @@ macroScript MaxCollapse category:"Max Core" buttonText:"Collapse" toolTip:"Colla
 
 		#EditablePoly: 
 		(
-			-- MOVE TO CORE.POLY
-			local verts = Core.Poly.GetSelectionAsVertex $;
-			-- ONLY MAKES SENSE IN SUB-OBJECT-LEVEL 1 (?)
-			verts -= (polyOp.GetVertsByFlag $ 8); -- Remove backfacing
-
-			if (verts.Numberset > 0) do
+			if (subObjectLevel == 1) then
 			(
-				local constrain = $.ConstrainType;
-				local snapData = Core.Util.SnapData ();
+				-- MOVE TO CORE.POLY
+				local verts = Core.Poly.GetSelectionAsVertex $;
+				-- ONLY MAKES SENSE IN SUB-OBJECT-LEVEL 1 (?)
+				verts -= (polyOp.GetVertsByFlag $ 8); -- Remove backfacing
 
-				$.ConstrainType = 0;
-				Core.Util.SetSnap #(7, 1) #Exclusive;
-
-				local center = Core.Poly.CalculateWeightedCenter $ verts:verts;
-				local target = PickPoint snap:#3D rubberBand:center;
-
-				if (ClassOf target == Point3) do
+				if (verts.Numberset > 0) do
 				(
-					polyOp.SetVert $ verts target;
-					polyOp.SetVertSelection $ verts;
-				)
+					local constrain = $.ConstrainType;
+					local snapData = Core.Util.SnapData ();
 
-				$.ConnectVertices ();
-				$.Collapse #CurrentLevel;
-				$.ConstrainType = constrain;
-				snapData.Reset ();
+					$.ConstrainType = 0;
+					Core.Util.SetSnap #(7, 1) #Exclusive;
+
+					local center = Core.Poly.CalculateWeightedCenter $ verts:verts;
+					local target = PickPoint snap:#3D rubberBand:center;
+
+					if (ClassOf target == Point3) do
+					(
+						polyOp.SetVert $ verts target;
+						polyOp.SetVertSelection $ verts;
+					)
+
+					$.ConnectVertices ();
+					$.Collapse #CurrentLevel;
+					$.ConstrainType = constrain;
+					snapData.Reset ();
+				)
 			)
+			else $.Collapse #CurrentLevel;
 		)
 
 		#EditableLine: 
@@ -75,20 +79,8 @@ macroScript MaxCollapse category:"Max Core" buttonText:"Collapse" toolTip:"Colla
 
 		#Selection:
 		(
-			for node in selection do
-			(
-				case (SuperClassOf node) of
-				(
-					Default			: CollapseStack node;
-					GeometryClass	: ConvertToPoly node;
-					Shape			: ConvertToSplineShape node;
-				)
-			)
-
-			if (GetCommandPanelTaskMode() != #Modify) do
-			(
-				SetCommandPanelTaskMode #Modify;
-			)
+			CollapseStack $;
+			SetCommandPanelTaskMode #Modify;
 		)
 	)
 )

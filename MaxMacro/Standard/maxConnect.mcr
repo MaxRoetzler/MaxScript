@@ -13,20 +13,20 @@ macroScript MaxConnect category:"Max Core" buttonText:"Connect" toolTip:"Connect
 
 		#EditablePoly: 
 		(
-			-- MOVE TO CORE.POLY
-			local verts = Core.Poly.GetSelectionAsVertex $;
-			verts -= (polyOp.GetVertsByFlag $ 8); -- Remove backfacing
-
-			local faces = Core.Poly.GetInFacesUsingVert $ verts:verts;
-
-			-- If all vertices share the same face, pick the target vert
-			if (faces.Numberset == 1) then
+			if (subObjectLevel == 1) then
 			(
-				local constrain = $.ConstrainType;
+				$.ConnectVertices ();
+			)
+			else if (subObjectLevel == 2) then
+			(
+				$.PopupDialog #ConnectEdges;
+			)
+			else if (subObjectLevel > 2) do
+			(
 				local snapData = Core.Util.SnapData ();
+				local verts = Core.Poly.GetSelectionAsVertex $;
 				local center = Core.Poly.CalculateWeightedCenter $ verts:verts;
 
-				$.ConstrainType = 0;
 				Core.Util.SetSnap #(7, 1) #Exclusive;
 
 				local master = undefined;
@@ -50,12 +50,9 @@ macroScript MaxConnect category:"Max Core" buttonText:"Connect" toolTip:"Connect
 						polyOp.CreateEdge $ vert master;
 					)
 				)
-				else $.ConnectVertices ();
 
-				$.ConstrainType = constrain;
 				snapData.Reset ();
 			)
-			else $.ConnectVertices ();
 		)
 
 		#EditableLine: 

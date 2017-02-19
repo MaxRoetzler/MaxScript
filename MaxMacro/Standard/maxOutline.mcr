@@ -4,12 +4,12 @@ macroScript MaxOutline category:"Max Core" buttonText:"Outline" toolTip:"Outline
 	(
 		#EditPoly:
 		(
-			$.PopupDialog #Outline;
+			$.Edit_Poly.PopupDialog #Outline;
 		)
 
 		#EditablePoly:
 		(
-			$.Edit_Poly.PopupDialog #Outline;
+			$.PopupDialog #Outline;
 		)
 
 		#EditableLine: 

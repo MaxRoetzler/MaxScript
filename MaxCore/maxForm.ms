@@ -304,7 +304,7 @@
 			control;
 		),
 
-		public function CheckBox tag state name:"" x:0 y:0 width:20 height:20 =
+		public function CheckBox tag text state name:"" x:0 y:0 width:20 height:20 =
 		(
 			local control = DotNetObject "System.Windows.Forms.CheckBox";
 
@@ -314,6 +314,7 @@
 			control.Tag = DotNetMxsValue tag;
 			control.Checked = state;
 			control.Name = name;
+			control.Text = text;
 
 			control;
 		),

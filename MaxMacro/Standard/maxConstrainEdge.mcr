@@ -1,4 +1,4 @@
-macroScript MaxConstrainEdge category:"Max Macro" buttonText:"Constrain Edge" toolTip:"Constrain Edge"
+macroScript MaxConstrainEdge category:"Max Core" buttonText:"Constrain Edge" toolTip:"Constrain Edge"
 (
 	case (Core.Node.GetObjectType ()) of
 	(

@@ -40,5 +40,11 @@ macroScript MaxConvertToFace category:"Max Core" buttonText:"Convert To Face" to
 
 			$.UnwrapUvw.SetTVSubObjectMode 3;
 		)
+
+		#Selection:
+		(
+			ConvertToPoly $;
+			SetCommandPanelTaskMode #Modify;
+		)
 	)
 )

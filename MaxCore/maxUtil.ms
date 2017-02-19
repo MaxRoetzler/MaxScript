@@ -101,6 +101,40 @@
 			snapMode.Active = true;
 		),
 
+
+-------------------
+-- VIEW | HELPER --
+-------------------
+
+		public ViewData = struct ViewData
+		(
+			private m_fov,
+			private m_type,
+			private m_distance,
+			private m_transform,
+
+			public function Save =
+			(
+				m_fov = Viewport.GetFov ();
+				m_type = Viewport.GetType ();
+				m_transform = Viewport.GetTm ();
+				m_distance = Viewport.GetFocalDistance ();
+			),
+
+			public function Reset =
+			(
+				Viewport.SetFov m_fov;
+				Viewport.SetType m_type;
+				Viewport.SetTm m_transform;
+				Viewport.SetFocalDistance m_distance;
+			),
+
+			on Create do
+			(
+				Save ();
+			)
+		);,
+
 ---------------------
 -- VECTOR | HELPER --
 ---------------------

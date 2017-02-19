@@ -10,8 +10,15 @@ macroScript MaxConvertToEdge category:"Max Core" buttonText:"Convert To Edge" to
 
 		#EditablePoly: 
 		(
-			$.ConvertSelection #CurrentLevel #Edge;
-			subObjectLevel = 2;
+			if (subObjectLevel == 2) then
+			(
+				$.CreateShape (UniqueName ($.name + "Shape")) on $;
+			)
+			else
+			(
+				$.ConvertSelection #CurrentLevel #Edge;
+				subObjectLevel = 2;
+			)
 		)
 
 		#EditableLine: 
@@ -38,6 +45,12 @@ macroScript MaxConvertToEdge category:"Max Core" buttonText:"Convert To Edge" to
 			)
 
 			$.UnwrapUvw.SetTVSubObjectMode 2;
+		)
+
+		#Selection:
+		(
+			ConvertToSplineShape $;
+			SetCommandPanelTaskMode #Modify;
 		)
 	)
 )

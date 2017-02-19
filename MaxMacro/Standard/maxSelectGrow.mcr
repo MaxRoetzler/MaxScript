@@ -1,4 +1,4 @@
-macroScript MaxSelectGrow category:"Max Macro" buttonText:"Select Grow" toolTip:"Select Grow"
+macroScript MaxSelectGrow category:"Max Core" buttonText:"Select Grow" toolTip:"Select Grow"
 (
 	case (Core.Node.GetObjectType ()) of
 	(
