@@ -19,6 +19,7 @@ macroScript MaxViewProject category:"Max Core" buttonText:"View Project" toolTip
 			(
 				ActionMan.ExecuteAction 0 "40227";	-- Restore persp. view
 				Viewport.SetTm (Inverse (Core.Util.AlignMatrixToView ()));
+				Core.Grid.AlignToView ();
 
 				max vpt iso user;
 				max zoomext sel;

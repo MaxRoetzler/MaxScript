@@ -5,13 +5,13 @@
 	struct maxCore
 	(
 		public Form,
+		public Grid,
 		public Line,
 		public Math,
 		public Node,
 		public Poly,
 		public Util,
 
-		private m_time,
 		private m_modules = #(),
 		private m_observers = #(),
 		private m_directory = "",
@@ -128,6 +128,16 @@
 			)
 		),
 
+		public function LoadModules =
+		(
+			local files = GetFiles (GetDirectory "MaxModule//*.ms");
+
+			for file in files do
+			(
+				FileIn file;
+			)
+		),
+
 		public function ListModules =
 		(
 			for module in m_modules do
@@ -172,21 +182,6 @@
 			(
 				(GetProperty observer event) ();
 			)
-		),
-
-------------------
--- CORE | DEBUG --
-------------------
-
-		public function StartTime =
-		(
-			m_time = Timestamp ();
-		),
-
-		public function StopTime =
-		(
-			format "Execution Time: %s\n" ((Timestamp () - m_time) / 1000.0);
-			m_time = undefined;
 		),
 
 ---------------------------
