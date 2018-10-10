@@ -1,19 +1,19 @@
 # MaxScript
 Library and various tools for 3ds Max
 
-## ATTACH
+## Attach
 Performs an attach operation on the current sub-object selection.
 * EditableSpline: attaches the picked shape
 * EditablePoly: attaches the picked editablePoly object
 * EditPoly: attaches the picked editPoly object
 
-## BEVEL
+## Bevel
 Performs a bevel operation on the current sub-object selection.
 * EditableSpline: rounds spline-knots
 * EditablePoly: bevels edges and faces
 * EditPoly: bevels edges and faces
 
-## BRIDGE
+## Bridge
 Performs a bridge operation on the current sub-object selection.
 * EditableSpline: -
 * EditablePoly: bridges open edges and faces
